@@ -47,8 +47,6 @@ const handler = async (req: NextApiRequest) => {
           color: 'white',
           height: '100%',
           width: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
           flexDirection: 'column',
           backgroundImage: 'linear-gradient(to bottom, #155e75, #ecfeff)',
           border: '16px solid #67e8f9',
@@ -56,34 +54,20 @@ const handler = async (req: NextApiRequest) => {
           fontFamily: '"Montserrat"',
         }}
       >
-        <div
-          style={{
-            fontSize: 128,
-          }}
-        >
-          {title}
-        </div>
+        <div tw="text-9xl w-full mb-8">{title}</div>
         <div
           style={{
             fontSize: 72,
             fontFamily: '"Fuzzy Bubbles"',
+            flexGrow: 1,
           }}
         >
           {subtitle}
         </div>
-        <div
-          style={{
-            fontSize: 72,
-          }}
-        >
-          ❤️
-        </div>
-        <div
-          style={{
-            fontSize: 72,
-          }}
-        >
-          {count}
+        <div tw="flex items-center justify-items-end w-full">
+          <div tw="grow"></div>
+          <div tw="text-7xl mr-4">❤️</div>
+          <div tw="text-7xl text-red-600">{count}</div>
         </div>
       </div>
     ),
