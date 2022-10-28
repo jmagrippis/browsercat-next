@@ -9,8 +9,11 @@ const DEFAULT_TITLE = 'Browsercat'
 const DEFAULT_SUBTITLE = 'Professional Social Preview images for everyone!'
 const DEFAULT_COUNT = '42'
 
-const font = fetch(
-  new URL('../../fonts/Fasthand/Fasthand-Regular.ttf', import.meta.url)
+const montserratFont = fetch(
+  new URL('../../fonts/Montserrat/Montserrat-Regular.ttf', import.meta.url)
+).then((res) => res.arrayBuffer())
+const fuzzyBubblesFont = fetch(
+  new URL('../../fonts/Fuzzy_Bubbles/FuzzyBubbles-Regular.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer())
 
 const getDefaultValues = (req: NextApiRequest) => {
@@ -33,7 +36,8 @@ const getDefaultValues = (req: NextApiRequest) => {
 
 const handler = async (req: NextApiRequest) => {
   const {title, subtitle, count} = getDefaultValues(req)
-  const fontData = await font
+  const montserratFontData = await montserratFont
+  const fuzzyBubblesFontData = await fuzzyBubblesFont
 
   return new ImageResponse(
     (
@@ -49,7 +53,7 @@ const handler = async (req: NextApiRequest) => {
           backgroundImage: 'linear-gradient(to bottom, #155e75, #ecfeff)',
           border: '16px solid #67e8f9',
           padding: '32px',
-          fontFamily: '"Fasthand"',
+          fontFamily: '"Montserrat"',
         }}
       >
         <div
@@ -62,6 +66,7 @@ const handler = async (req: NextApiRequest) => {
         <div
           style={{
             fontSize: 72,
+            fontFamily: '"Fuzzy Bubbles"',
           }}
         >
           {subtitle}
@@ -86,8 +91,13 @@ const handler = async (req: NextApiRequest) => {
       emoji: 'noto',
       fonts: [
         {
-          name: 'Fasthand',
-          data: fontData,
+          name: 'Montserrat',
+          data: montserratFontData,
+          style: 'normal',
+        },
+        {
+          name: 'Fuzzy Bubbles',
+          data: fuzzyBubblesFontData,
           style: 'normal',
         },
       ],
