@@ -1,4 +1,4 @@
-import type {NextApiRequest, NextApiResponse} from 'next'
+import type {NextApiRequest} from 'next'
 import {ImageResponse} from '@vercel/og'
 
 export const config = {
@@ -10,10 +10,13 @@ const DEFAULT_SUBTITLE = 'Professional Social Preview images for everyone!'
 const DEFAULT_COUNT = '42'
 
 const montserratFont = fetch(
-  new URL('../../fonts/Montserrat/Montserrat-Regular.ttf', import.meta.url)
+  new URL('../../../fonts/Montserrat/Montserrat-Regular.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer())
 const fuzzyBubblesFont = fetch(
-  new URL('../../fonts/Fuzzy_Bubbles/FuzzyBubbles-Regular.ttf', import.meta.url)
+  new URL(
+    '../../../fonts/Fuzzy_Bubbles/FuzzyBubbles-Regular.ttf',
+    import.meta.url
+  )
 ).then((res) => res.arrayBuffer())
 
 const getDefaultValues = (req: NextApiRequest) => {
@@ -48,10 +51,11 @@ const handler = async (req: NextApiRequest) => {
           height: '100%',
           width: '100%',
           flexDirection: 'column',
-          backgroundImage: 'linear-gradient(to bottom, #155e75, #ecfeff)',
+          backgroundImage: 'linear-gradient(135deg, #0d9488, #0891b2)',
           border: '16px solid #67e8f9',
           padding: '32px',
           fontFamily: '"Montserrat"',
+          textShadow: '2px 3px 4px',
         }}
       >
         <div tw="text-9xl w-full mb-8">{title}</div>
@@ -67,7 +71,7 @@ const handler = async (req: NextApiRequest) => {
         <div tw="flex items-center justify-items-end w-full">
           <div tw="grow"></div>
           <div tw="text-7xl mr-4">❤️</div>
-          <div tw="text-7xl text-red-600">{count}</div>
+          <div tw="text-7xl text-red-500">{count}</div>
         </div>
       </div>
     ),
